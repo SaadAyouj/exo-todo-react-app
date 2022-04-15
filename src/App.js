@@ -1,72 +1,37 @@
-import React, {useState} from "react"
-import './App.css';
+import React from 'react'
 
-function App() {
-  // State Hook - 'useState'
-  const [newTodo, setNewTodo] = useState("");
-  const [todos, setTodos] = useState([]);
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-  //Helper Functions
+//Pages
+import Home from './pages/Home'
+import About from './pages/About'
+import Profile from './pages/Profile'
+import Error from './pages/Error'
 
-  {/* function ajout d'un todo */ }
-  const addTodo = () => {
-    // Check input
-    if (!newTodo) {
-      alert('Veuillez entrer un Todo !');
-      return;
-    }
+//Components
+import Menu from './components/Menu'
+import Footer from './components/Footer'
 
-    const todo = {
-      id: Math.floor(Math.random() * 1000),
-      value: newTodo,
-    };
-
-    //ajouter notre todo dans la table
-    setTodos((oldList) => [...oldList, todo]);
-
-    //Reset Input & State
-    setNewTodo("");
-
-  }
-
-  {/* function suppression d'un todo */ }
-  const deleteTodo = (id) => {
-    const newTableTodos = todos.filter((todo) => todo.id === id);
-    setTodos(newTableTodos);
-  }
-
+const App = () => {
   return (
-    <div className="App">
-      {/* 1- Header */}
-      <h1>Ma Todo List</h1>
 
-      {/* 2- input ajouter new Todo */}
-      <input 
-        type="text"
-        placeholder="Ajouter un todo..."
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
-      />
-
-      {/* 3- Button envoie Todo */}
-      <button onClick={() => addTodo()}>Ajouter</button>
-
-      {/* 4- Liste des Todos */}
-      <ul>
-        {todos.map((todo) => {
-          return (
-            <div>
-              <li key={todo.id}>
-                {todo.value}
-                <button onClick={() => deleteTodo(todo.id)}>X</button>
-              </li>
-            </div>
-          )
-        })}
-      </ul>
+    <Router>
       
-    </div>
-  );
+      <Menu />
+        
+      <Routes>
+
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/profile/:username" element={<Profile />} />
+        <Route path="*" element={<Error />} />
+
+      </Routes>
+
+      <Footer />
+    
+    </Router>
+  )
 }
 
-export default App;
+export default App
