@@ -1,6 +1,8 @@
 import React, {useState} from "react"
 import '../App.css';
 
+import { animate, motion } from 'framer-motion'
+
 function Home() {
   // State Hook - 'useState'
   const [newTodo, setNewTodo] = useState("");
@@ -36,7 +38,14 @@ function Home() {
   }
 
   return (
-    <div className="App">
+    <motion.div
+      className="App"
+
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: window.innerWidth }}
+    
+    >
       {/* 1- Header */}
       <h1>Ma Todo List</h1>
 
@@ -65,7 +74,7 @@ function Home() {
         })}
       </ul>
       
-    </div>
+    </motion.div>
   );
 }
 

@@ -7,7 +7,7 @@ const Profile = () => {
   let { username } = useParams();
 
   return (
-    <div>C'est la Page Profile de { username }</div>
+    <div><h1 style={{ textAlign: "center" }}>Page About</h1></div>
   )
 }
 

@@ -8,7 +8,7 @@ const Error = () => {
 
   return (
     <>
-      <div>Erreur 404 Page Not Found</div>
+      <div><h1 style={{ textAlign: "center" }}>Page About</h1></div>
       <button onClick={() => {
         navigate("/")
       }}>Retourner sur la Home Page !</button>
